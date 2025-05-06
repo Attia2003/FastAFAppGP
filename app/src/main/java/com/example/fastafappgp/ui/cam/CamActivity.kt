@@ -90,11 +90,9 @@ class CamActivity : ComponentActivity() {
 
     private fun observeDetections() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.detectionResults.collect { detections ->
                     binding.overlayView.detections = detections
                 }
-            }
         }
     }
 

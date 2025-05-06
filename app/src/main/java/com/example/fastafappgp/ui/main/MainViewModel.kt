@@ -12,6 +12,10 @@ class MainViewModel: ViewModel() {
 
     fun Opensearch(){
         event.postValue(EventNavigate.NavigateToSearch)
+    }
+
+    fun OpenOrder(){
+        event.postValue(EventNavigate.NavigateToOrder)
 
     }
 }

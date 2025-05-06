@@ -7,9 +7,64 @@
 
     <data>
         <variable
-            name="vm "
+            name="vm"
             type="com.example.fastafappgp.ui.details.DetailsViewModel" />
     </data>
-    
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_margin="18dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text='@{vm.drugDetails.name != null ? vm.drugDetails.name : ""}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginVertical="8dp"/>
+
+        <TextView
+            android:text='@{vm.drugDetails.form != null ? vm.drugDetails.form : ""}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginVertical="8dp"/>
+
+        <TextView
+            android:text='@{vm.drugDetails.units != null ? String.valueOf(vm.drugDetails.units) : ""}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginVertical="8dp"/>
+
+        <TextView
+            android:text='@{vm.drugDetails.fullPrice != null ? String.valueOf(vm.drugDetails.fullPrice) : ""}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
     
 </layout>

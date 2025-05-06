@@ -13,6 +13,7 @@ import com.example.fastafappgp.R
 import com.example.fastafappgp.databinding.ActivityMainBinding
 import com.example.fastafappgp.ui.cam.CamActivity
 import com.example.fastafappgp.ui.cart.search.SearchActivity
+import com.example.fastafappgp.ui.order.OrderActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -47,6 +48,9 @@ class MainActivity : AppCompatActivity() {
                 EventNavigate.NavigateToSearch -> {
                     opensearch()
                 }
+                EventNavigate.NavigateToOrder -> {
+                    openorder()
+                }
                 else -> {}
             }
 
@@ -61,6 +65,10 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SearchActivity::class.java)
         startActivity(intent)
 
+    }
+    fun openorder() {
+        val intent = Intent(this, OrderActivity::class.java)
+        startActivity(intent)
     }
 
 }

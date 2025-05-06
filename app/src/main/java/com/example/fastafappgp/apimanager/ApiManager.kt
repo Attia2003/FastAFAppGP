@@ -57,7 +57,7 @@ class ApiManager() {
         if (retrofit == null) {
             retrofit = Retrofit.Builder()
                 .baseUrl(Constant.serverurl)
-                .client(getUnsafeOkHttpClient()) // Use the OkHttpClient with the AuthInterceptor
+                .client(getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
