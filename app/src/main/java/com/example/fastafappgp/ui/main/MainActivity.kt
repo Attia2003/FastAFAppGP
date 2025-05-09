@@ -13,6 +13,7 @@ import com.example.fastafappgp.R
 import com.example.fastafappgp.databinding.ActivityMainBinding
 import com.example.fastafappgp.ui.cam.CamActivity
 import com.example.fastafappgp.ui.cart.search.SearchActivity
+import com.example.fastafappgp.ui.expiry.ExpiryActivity
 import com.example.fastafappgp.ui.order.OrderActivity
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +52,9 @@ class MainActivity : AppCompatActivity() {
                 EventNavigate.NavigateToOrder -> {
                     openorder()
                 }
+                EventNavigate.NavigateToExpiry -> {
+                    openexpiry()
+                }
                 else -> {}
             }
 
@@ -68,6 +72,10 @@ class MainActivity : AppCompatActivity() {
     }
     fun openorder() {
         val intent = Intent(this, OrderActivity::class.java)
+        startActivity(intent)
+    }
+    fun openexpiry() {
+        val intent = Intent(this, ExpiryActivity::class.java)
         startActivity(intent)
     }
 

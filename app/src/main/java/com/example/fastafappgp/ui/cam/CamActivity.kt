@@ -1,20 +1,15 @@
 package com.example.fastafappgp.ui.cam
 
 import android.Manifest
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
-import android.view.ViewGroup
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import com.example.fastafappgp.Constant
 import com.example.fastafappgp.databinding.ActivityCamBinding
 import kotlinx.coroutines.*
 import java.util.concurrent.Executors

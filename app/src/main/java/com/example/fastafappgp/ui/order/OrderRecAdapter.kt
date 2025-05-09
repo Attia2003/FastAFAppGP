@@ -1,5 +1,6 @@
 package com.example.fastafappgp.ui.order
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +38,8 @@ class OrderRecAdapter(
                     val enteredValue = etAmount.text.toString().toIntOrNull() ?: 0
                     drug?.id?.let { id ->
                         userInputMap[id] = enteredValue
+                        Log.d("OrderRecAdapter", "Updated amount for drug ID $id: $enteredValue")
+                        Log.d("OrderRecAdapter", "Current map size: ${userInputMap.size}")
                         onAmountChanged(id, enteredValue)
                     }
                 }
@@ -44,5 +47,9 @@ class OrderRecAdapter(
         }
     }
 
-    fun getUserInputMap(): Map<Int, Int> = userInputMap
+    fun getUserInputMap(): Map<Int, Int> {
+        Log.d("OrderRecAdapter", "Getting user input map. Size: ${userInputMap.size}")
+        Log.d("OrderRecAdapter", "Map contents: $userInputMap")
+        return userInputMap.toMap()
+    }
 }

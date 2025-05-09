@@ -3,7 +3,7 @@ package com.example.fastafappgp.ui.cam
 import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fastafappgp.Constant
+import com.example.fastafappgp.util.Constant
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest

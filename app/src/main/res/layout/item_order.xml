@@ -6,54 +6,47 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-
     <TextView
         android:id="@+id/tvDrugName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Drug Name"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:textSize="18sp"/>
-
 
     <TextView
         android:id="@+id/tvDrugForm"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tvDrugName"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:text="Form"
         android:layout_marginTop="8dp"
         android:textSize="16sp"/>
 
+    <TextView
+        android:id="@+id/tvShortageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shortage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDrugForm"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp" />
 
-
-        <TextView
-            android:id="@+id/tvShortageLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Shortage"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDrugForm"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/etAmount"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="0"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/edit_input"
-            app:layout_constraintBottom_toBottomOf="@id/tvShortageLabel"
-            app:layout_constraintTop_toTopOf="@id/tvShortageLabel"
-            android:textSize="16sp"/>
-
-
-
-
-
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/edit_input"
+        app:layout_constraintBottom_toBottomOf="@id/tvShortageLabel"
+        app:layout_constraintTop_toTopOf="@id/tvShortageLabel"
+        android:textSize="16sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

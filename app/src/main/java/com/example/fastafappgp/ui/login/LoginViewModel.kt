@@ -13,6 +13,7 @@ class LoginViewModel : ViewModel() {
 
     val loginResponse = MutableLiveData<LoginResponse>()
     val loginError = MutableLiveData<String>()
+    val isLoading = MutableLiveData<Boolean>(false)
 
     val event = SingleLiveEvent<NavigateEvent>()
 
@@ -20,33 +21,62 @@ class LoginViewModel : ViewModel() {
         val user = username.value ?: ""
         val pass = password.value ?: ""
 
-        if (user.isBlank() || pass.isBlank()) {
-            loginError.postValue("Username or password cannot be empty")
-            return
+
+        when {
+            user.isBlank() -> {
+                loginError.postValue("Username cannot be empty")
+                return
+            }
+            pass.isBlank() -> {
+                loginError.postValue("Password cannot be empty")
+                return
+            }
+            pass.length < 6 -> {
+                loginError.postValue("Password must be at least 6 characters")
+                return
+            }
         }
+
+        // Set loading state
+        isLoading.postValue(true)
 
         viewModelScope.launch {
             try {
-
                 val apiManager = ApiManager()
                 val response = apiManager.getWebService().login(LoginRequest(user, pass))
 
                 if (response.isSuccessful) {
                     response.body()?.let { loginResp ->
+                        // Save tokens
                         TokenManager.saveAccessToken(loginResp.accessToken)
                         TokenManager.saveRefreshToken(loginResp.refreshToken)
 
                         loginResponse.postValue(loginResp)
                         event.postValue(NavigateEvent.NavigateToCart)
-
                     } ?: run {
-                        loginError.postValue("Empty response body")
+                        loginError.postValue("Server returned empty response")
                     }
                 } else {
-                    loginError.postValue("Login failed: ${response.code()}")
+                    // Handle specific HTTP error codes
+                    val errorMessage = when (response.code()) {
+                        401 -> "Invalid username or password"
+                        403 -> "Access denied"
+                        404 -> "Service not found"
+                        500 -> "Server error"
+                        else -> "Login failed: ${response.code()}"
+                    }
+                    loginError.postValue(errorMessage)
                 }
             } catch (e: Exception) {
-                loginError.postValue("Error: ${e.localizedMessage}")
+                // Handle specific exceptions
+                val errorMessage = when (e) {
+                    is java.net.UnknownHostException -> "No internet connection"
+                    is java.net.SocketTimeoutException -> "Connection timeout"
+                    else -> "Error: ${e.localizedMessage}"
+                }
+                loginError.postValue(errorMessage)
+            } finally {
+                isLoading.postValue(false)
             }
         }
     }

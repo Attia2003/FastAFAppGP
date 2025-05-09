@@ -16,6 +16,10 @@ class MainViewModel: ViewModel() {
 
     fun OpenOrder(){
         event.postValue(EventNavigate.NavigateToOrder)
+    }
+    fun OpenExpiry(){
+        event.postValue(EventNavigate.NavigateToExpiry)
 
     }
+
 }

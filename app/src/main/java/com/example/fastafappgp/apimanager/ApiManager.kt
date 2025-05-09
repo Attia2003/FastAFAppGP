@@ -1,7 +1,7 @@
 package com.example.fastafappgp.apimanager
 
 import android.content.Context
-import com.example.fastafappgp.Constant
+import com.example.fastafappgp.util.Constant
 import com.example.fastafappgp.ui.login.AuthInterceptor
 import com.example.fastafappgp.ui.login.TokenManager
 

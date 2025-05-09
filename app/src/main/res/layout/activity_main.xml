@@ -48,6 +48,16 @@
            app:layout_constraintTop_toBottomOf="@id/opensearch"
            android:onClick="@{()->vm.OpenOrder()}"
            />
+       <Button
+           android:id="@+id/openexpiry"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="expiry"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/openorder"
+           android:onClick="@{()->vm.OpenExpiry()}"
+           />
 
    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

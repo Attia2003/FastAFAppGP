@@ -73,12 +73,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@={vm.password}"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:hint="password"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+                android:id="@+id/loginButton"
                 android:layout_width="327dp"
                 android:layout_height="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -89,6 +90,15 @@
                 android:text="Log In"
                 android:layout_marginBottom="50dp"/>
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

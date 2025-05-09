@@ -5,6 +5,11 @@
     android:id="@+id/main"
     tools:context=".ui.order.previeworder.PreViewOrder">
 
+    <data>
+        <variable
+            name="vm"
+            type="com.example.fastafappgp.ui.order.previeworder.PreViewViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"

@@ -1,26 +1,48 @@
 package com.example.fastafappgp.ui.order.previeworder
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.databinding.DataBindingUtil
 import com.example.fastafappgp.R
-import com.example.fastafappgp.databinding.ActivityOrderBinding
+import com.example.fastafappgp.databinding.ActivityPreViewOrderBinding
 
 class PreViewOrder : AppCompatActivity() {
-    lateinit var binding : ActivityOrderBinding
-    val viewModel : PreViewViewModel by viewModels()
+    private lateinit var binding: ActivityPreViewOrderBinding
+    private val viewModel = PreViewViewModel.getInstance()
+    private lateinit var adapter: PreviewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_pre_view_order)
+        initView()
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+
+    private fun initView() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_pre_view_order)
+        binding.vm = viewModel
+        binding.lifecycleOwner = this
+
+        adapter = PreviewAdapter()
+        binding.recylerorder.adapter = adapter
+
+        observePreviewItems()
+    }
+
+    private fun observePreviewItems() {
+        viewModel.previewItems.observe(this) { items ->
+            Log.d("PreViewOrder", "Received items update. Size: ${items.size}")
+            Log.d("PreViewOrder", "Items: ${items.map { "${it.drugName} (${it.amount})" }}")
+            adapter.updateItems(items)
         }
     }
 }

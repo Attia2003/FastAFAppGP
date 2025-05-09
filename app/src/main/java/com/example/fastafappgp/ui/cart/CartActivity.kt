@@ -9,8 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fastafappgp.Constant
+import com.example.fastafappgp.util.Constant
 import com.example.fastafappgp.R
 import com.example.fastafappgp.databinding.ActivityCart2Binding
 

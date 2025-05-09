@@ -13,8 +13,8 @@ class OrderViewModel : ViewModel() {
 
     private val apiService = ApiManager().getWebService()
 
-    private val _shortageData = MutableLiveData<ResponseOrderItem>()
-    val shortageData: LiveData<ResponseOrderItem> = _shortageData
+    private val _shortageData = MutableLiveData<List<ResponseOrderItem>>()
+    val shortageData: LiveData<List<ResponseOrderItem>> = _shortageData
 
     fun getShortageForCurrentPharmacy() {
         viewModelScope.launch {

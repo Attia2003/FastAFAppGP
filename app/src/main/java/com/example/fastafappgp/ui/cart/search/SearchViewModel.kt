@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fastafappgp.apimanager.ApiManager
+
 import com.example.fastafappgp.ui.login.pharmacy.PharmacyRepository
 import com.example.fastafappgp.ui.login.pharmacy.PharmacyRepository.getPharmacyIdSafely
 import kotlinx.coroutines.launch
@@ -22,12 +23,12 @@ class SearchViewModel : ViewModel() {
     val error: LiveData<String> get() = _error
 
     private val selectedDrugIds = mutableSetOf<Int>()
-    fun searchDrugs(name: String, page: Int = 0, size: Int = 20) {
+    fun searchDrugs(name: String, page: Int = 0, size: Int = 20,) {
         viewModelScope.launch {
             try {
                 val pharmacyId = PharmacyRepository.getPharmacyIdSafely()
                 if (pharmacyId != null) {
-                    val response = api.getsearch(pharmacyId, name, page, size)
+                    val response = api.getsearch(pharmacyId, name, page, size, expired = null, notexpired = null, approachingExpiry = null)
                     if (response.isSuccessful && response.body() != null) {
                         val drugs = response.body()!!.mapNotNull { it.drug }
                         _searchResults.postValue(drugs)

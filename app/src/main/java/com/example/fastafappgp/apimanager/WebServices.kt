@@ -1,6 +1,7 @@
 package com.example.fastafappgp.apimanager
 
 import ResponsePharmacyItem
+
 import com.example.fastafappgp.ui.cart.ResponseDrugReceiopts
 import com.example.fastafappgp.ui.cart.search.Drug
 import com.example.fastafappgp.ui.cart.search.ResponseSearchItem
@@ -32,7 +33,10 @@ interface WebServices {
         @Path("id") pharmacyId: Int,
         @Query("name") name: String,
         @Query("page") page: Int,
-        @Query("size") size: Int
+        @Query("size") size: Int,
+        @Query("EXPIRED") expired: String?=null,
+        @Query("APPROACHING_EXPIRY")approachingExpiry:String?=null,
+        @Query("NOT_EXPIRED") notexpired: String?=null
     ): Response<List<ResponseSearchItem>>
 
     @GET("api/v1/pharmacies/{id}/drugs/bulk")
@@ -51,7 +55,7 @@ interface WebServices {
 
 
     @GET("/api/v1/pharmacies/{id}/shortage/info")
-    suspend fun getShortage(@Path("id") id: Int): Response<ResponseOrderItem>
+    suspend fun getShortage(@Path("id") id: Int): Response<List<ResponseOrderItem>>
 
 
 }
