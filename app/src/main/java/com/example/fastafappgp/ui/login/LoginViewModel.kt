@@ -37,7 +37,7 @@ class LoginViewModel : ViewModel() {
             }
         }
 
-        // Set loading state
+
         isLoading.postValue(true)
 
         viewModelScope.launch {
@@ -57,7 +57,7 @@ class LoginViewModel : ViewModel() {
                         loginError.postValue("Server returned empty response")
                     }
                 } else {
-                    // Handle specific HTTP error codes
+
                     val errorMessage = when (response.code()) {
                         401 -> "Invalid username or password"
                         403 -> "Access denied"
@@ -68,7 +68,7 @@ class LoginViewModel : ViewModel() {
                     loginError.postValue(errorMessage)
                 }
             } catch (e: Exception) {
-                // Handle specific exceptions
+
                 val errorMessage = when (e) {
                     is java.net.UnknownHostException -> "No internet connection"
                     is java.net.SocketTimeoutException -> "Connection timeout"

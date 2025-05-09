@@ -43,7 +43,7 @@ class LoginActvity : AppCompatActivity() {
     }
 
     fun subscribeLiveData() {
-        // Observe navigation events
+
         viewmodel.event.observe(this) { event ->
             when (event) {
                 NavigateEvent.NavigateToCart -> {
@@ -52,20 +52,20 @@ class LoginActvity : AppCompatActivity() {
             }
         }
 
-        // Observe loading state
+
         viewmodel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
             binding.loginButton.isEnabled = !isLoading
         }
 
-        // Observe error messages
+
         viewmodel.loginError.observe(this) { errorMessage ->
             showError(errorMessage)
         }
     }
 
     private fun showError(message: String) {
-        // Show error in a Snackbar for better UX
+
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
             .setAction("Dismiss") { }
             .show()
@@ -74,7 +74,6 @@ class LoginActvity : AppCompatActivity() {
     fun GoToCartActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish() // Close login activity
+        finish()
     }
-}
 }
