@@ -47,7 +47,6 @@ class LoginViewModel : ViewModel() {
 
                 if (response.isSuccessful) {
                     response.body()?.let { loginResp ->
-                        // Save tokens
                         TokenManager.saveAccessToken(loginResp.accessToken)
                         TokenManager.saveRefreshToken(loginResp.refreshToken)
 

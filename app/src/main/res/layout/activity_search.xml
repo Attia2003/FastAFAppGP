@@ -17,18 +17,18 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradint_bording"
+
         >
 
         <ImageView
             android:id="@+id/iconback"
             android:layout_width="34dp"
             android:layout_height="34dp"
-
-           android:layout_margin="20dp"
             android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toTopOf="@id/search_bar"
-            app:layout_constraintStart_toStartOf="@id/search_bar" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="10dp"
+            />
 
         <EditText
             android:id="@+id/search_bar"

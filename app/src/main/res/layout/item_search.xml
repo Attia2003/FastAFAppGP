@@ -1,55 +1,64 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:stretchColumns="1"
-    android:padding="8dp"
-    android:background="#EFEBEB">
 
-    <TableRow
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:gravity="center_vertical">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent">
 
-        <TextView
-            android:id="@+id/titleName"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:padding="8dp"
-            android:text="name"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:background="@android:color/white" />
+            android:padding="16dp"
+            android:background="@android:color/white">
 
-        <TextView
-            android:id="@+id/type"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:textColor="@color/black"
-            android:text="type"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:background="@android:color/white" />
+            <TextView
+                android:id="@+id/titleName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="name"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/type"
+                app:layout_constraintHorizontal_weight="2"
+                android:ellipsize="end"
+                android:maxLines="1"/>
 
-        <ImageView
-            android:id="@+id/infoIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:src="@drawable/ic_info"
-            android:contentDescription="Info icon"
-            android:background="@android:color/white" />
-    </TableRow>
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="type"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/titleName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/infoIcon"
+                app:layout_constraintHorizontal_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black" />
+            <ImageView
+                android:id="@+id/infoIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_info"
+                android:contentDescription="Info icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
 
-</TableLayout>
+                android:background="@drawable/circle_background"
+                android:padding="6dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>

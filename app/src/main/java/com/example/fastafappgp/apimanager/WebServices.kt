@@ -11,6 +11,7 @@ import com.example.fastafappgp.ui.login.LoginResponse
 import com.example.fastafappgp.ui.login.RefreshRequest
 import com.example.fastafappgp.ui.order.ResponseOrder
 import com.example.fastafappgp.ui.order.ResponseOrderItem
+import com.example.fastafappgp.ui.order.previeworder.OrderRequest
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -57,6 +58,11 @@ interface WebServices {
     @GET("/api/v1/pharmacies/{id}/shortage/info")
     suspend fun getShortage(@Path("id") id: Int): Response<List<ResponseOrderItem>>
 
+    @POST("/api/v1/orders/")
+    suspend fun uploadOrder(
+        @Query("pharmacy_id") pharmacyId: Int,
+        @Body order: OrderRequest
+    ): Response<Unit>
 
 }
 

@@ -78,13 +78,15 @@ class OrderActivity : AppCompatActivity() {
                 
                 if (amount > 0) {
                     hasItems = true
+                    Log.d("OrderActivity", "Creating PreviewItem with drugId: $drugId")
                     val previewItem = PreviewItem(
                         drugName = item.drug?.name ?: "Unknown",
                         drugForm = item.drug?.form ?: "-",
-                        amount = amount
+                        amount = amount,
+                        drugId = drugId
                     )
                     previewItemsList.add(previewItem)
-                    Log.d("OrderActivity", "Added to preview list: ${previewItem.drugName}, Amount: ${previewItem.amount}")
+                    Log.d("OrderActivity", "Added to preview list: ${previewItem.drugName}, Amount: ${previewItem.amount}, ID: ${previewItem.drugId}")
                 }
             }
         }
