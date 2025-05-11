@@ -64,6 +64,13 @@ interface WebServices {
         @Body order: OrderRequest
     ): Response<Unit>
 
+//    @GET("api/vi/orders/all")
+//    suspend fun getallorders(@Query("pharmacy_id") pharmacyId: Int ,
+//                             @Query("page") page : Int,
+//                             @Query("size") size: Int) :
+
+
+
 }
 
 

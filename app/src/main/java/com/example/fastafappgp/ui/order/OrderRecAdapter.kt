@@ -52,4 +52,8 @@ class OrderRecAdapter(
         Log.d("OrderRecAdapter", "Map contents: $userInputMap")
         return userInputMap.toMap()
     }
+
+    fun clearUserInput() {
+        userInputMap.clear()
+    }
 }

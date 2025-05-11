@@ -109,4 +109,11 @@ class OrderActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        // Clear the adapter's data when returning from preview screen
+        adapter.clearUserInput()
+        adapter.notifyDataSetChanged()
+    }
 }
