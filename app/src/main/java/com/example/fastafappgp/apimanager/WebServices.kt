@@ -1,11 +1,13 @@
 package com.example.fastafappgp.apimanager
 
 import ResponsePharmacyItem
+import com.example.fastafappgp.ui.cart.ReceiptItem
 
 import com.example.fastafappgp.ui.cart.ResponseDrugReceiopts
 import com.example.fastafappgp.ui.cart.search.Drug
 import com.example.fastafappgp.ui.cart.search.ResponseSearchItem
 import com.example.fastafappgp.ui.details.ResponseDetails
+import com.example.fastafappgp.ui.exchange.ResponseExchange
 import com.example.fastafappgp.ui.login.LoginRequest
 import com.example.fastafappgp.ui.login.LoginResponse
 import com.example.fastafappgp.ui.login.RefreshRequest
@@ -47,8 +49,6 @@ interface WebServices {
     @GET("/api/v1/drugs/{id}")
     suspend fun getdetails(@Path("id") id: Int): Response<ResponseDetails>
 
-//    @POST("/api/v1/receipts")
-//    suspend fun sentreset(@Path("id")id:Int , @Body reset : ReceiptItem) : Response<Unit>
 
 
     @GET("/api/v1/users/pharmacy")
@@ -70,7 +70,20 @@ interface WebServices {
 //                             @Query("size") size: Int) :
 
 
+    @GET("/api/v1/receipts/filter")
+    suspend fun getreceipts(@Query("receipt_id") receiptId: Int,
+                             @Query("drug_id")drugId:Int,
+                             @Query("to_date")todate:String,
+                             @Query("from_date")fromdate:String,
+                             @Query("cashier_id")cashierId:Int,
+                            ): Response<List<ResponseExchange>>
 
+
+    @POST("/api/v1/receipts")
+    suspend fun uploadreceipts(
+        @Query("pharmacy_id") pharmacyId: Int,
+        @Body receiptItems: List<ReceiptItem>
+    ): Response<Unit>
 }
 
 

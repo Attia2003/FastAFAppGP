@@ -1,3 +1,4 @@
+
 package com.example.fastafappgp.ui.cam
 
 data class DetectionResponse(

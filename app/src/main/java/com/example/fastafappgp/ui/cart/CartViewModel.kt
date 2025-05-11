@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fastafappgp.apimanager.ApiManager
 import com.example.fastafappgp.ui.login.pharmacy.PharmacyRepository
+import com.example.fastafappgp.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
 class CartViewModel : ViewModel() {
@@ -18,6 +19,11 @@ class CartViewModel : ViewModel() {
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
+
+    private val _submitResult = MutableLiveData<Boolean>()
+    val submitResult: LiveData<Boolean> get() = _submitResult
+
+    val event = SingleLiveEvent<EventNavigateCart>()
 
     fun fetchCartItems(selectedIds: List<Int>) {
         viewModelScope.launch {
@@ -39,4 +45,35 @@ class CartViewModel : ViewModel() {
         }
     }
 
+    fun submitReceipts(items: List<ResponseDrugReceiopts>) {
+        viewModelScope.launch {
+            try {
+                val pharmacyId = PharmacyRepository.getPharmacyIdSafely()
+                if (pharmacyId != null) {
+                    val receiptItems = items.map {
+                        ReceiptItem(
+                            drugId = it.drug.id,
+                            discount = 0f,
+                            units = it.inputunits ?: 0,
+                            packs = it.inputpacks ?: 0
+                        )
+                    }
+                    val response = api.uploadreceipts(pharmacyId, receiptItems)
+                    _submitResult.postValue(response.isSuccessful)
+                } else {
+                    _submitResult.postValue(false)
+                }
+            } catch (e: Exception) {
+                _submitResult.postValue(false)
+            }
+        }
+    }
+
+    fun opensearch(){
+        event.postValue(EventNavigateCart.NavigateToSearch)
+    }
+    fun opencam(){
+        event.postValue(EventNavigateCart.NavigateToCam)
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.fastafappgp.ui.cart
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -12,6 +13,9 @@ import androidx.databinding.DataBindingUtil
 import com.example.fastafappgp.util.Constant
 import com.example.fastafappgp.R
 import com.example.fastafappgp.databinding.ActivityCart2Binding
+import com.example.fastafappgp.ui.cam.CamActivity
+import com.example.fastafappgp.ui.cart.search.SearchActivity
+
 
 class CartActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCart2Binding
@@ -44,11 +48,37 @@ class CartActivity : AppCompatActivity() {
         }
 
 
+
         viewModel.error.observe(this) { error ->
             if (error.isNotEmpty()) {
                 Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
             }
         }
+
+        viewModel.submitResult.observe(this) { success ->
+            if (success) {
+                Toast.makeText(this, "Receipts uploaded successfully", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                Toast.makeText(this, "Failed to upload receipts", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.event.observe(this){
+            when(it){
+                EventNavigateCart.NavigateToSearch -> {
+                    opensearch()
+                }
+                EventNavigateCart.NavigateToCam -> {
+                    opencam()
+                }
+
+            }
+        }
+
+
+
+
 
 
     }
@@ -58,17 +88,30 @@ class CartActivity : AppCompatActivity() {
         binding.vm = viewModel
         binding.lifecycleOwner = this
         binding.reclerReset.adapter = adapter
+
+        binding.submitReset.setOnClickListener {
+            submitCartData()
+        }
     }
 
-//    private fun submitCartData() {
-//
-//        val updatedItems = adapter.getUpdatedItems()
-//
-//        if (updatedItems.isNotEmpty()) {
-//
-//            viewModel.submitCart(updatedItems)
-//        } else {
-//            Toast.makeText(this, "No items to submit", Toast.LENGTH_SHORT).show()
-//        }
-//    }
+    private fun submitCartData() {
+        val updatedItems = adapter.getUpdatedItems()
+        if (updatedItems.isNotEmpty()) {
+            viewModel.submitReceipts(updatedItems)
+        } else {
+            Toast.makeText(this, "No items to submit", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun opencam(){
+        val intent = Intent(this, CamActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun opensearch(){
+        val intent = Intent(this, SearchActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }

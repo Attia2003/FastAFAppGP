@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.fastafappgp.R
 import com.example.fastafappgp.databinding.ActivityMainBinding
 import com.example.fastafappgp.ui.cam.CamActivity
+import com.example.fastafappgp.ui.cart.CartActivity
 import com.example.fastafappgp.ui.cart.search.SearchActivity
 import com.example.fastafappgp.ui.expiry.ExpiryActivity
 import com.example.fastafappgp.ui.order.OrderActivity
@@ -25,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         initview()
-        setupClickListeners()
         setupBottomNavigation()
         setupWindowInsets()
+        SubscribetoLiveData()
     }
 
     private fun setupWindowInsets() {
@@ -44,29 +45,13 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
     }
 
-    private fun setupClickListeners() {
-        binding.camCard.setOnClickListener {
-            startActivity(Intent(this, CamActivity::class.java))
-        }
 
-        binding.searchCard.setOnClickListener {
-            startActivity(Intent(this, SearchActivity::class.java))
-        }
-
-        binding.orderCard.setOnClickListener {
-            startActivity(Intent(this, OrderActivity::class.java))
-        }
-
-        binding.expiryCard.setOnClickListener {
-            startActivity(Intent(this, ExpiryActivity::class.java))
-        }
-    }
 
     private fun setupBottomNavigation() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    // Already on home, do nothing
+
                     true
                 }
                 R.id.navigation_search -> {
@@ -88,34 +73,14 @@ class MainActivity : AppCompatActivity() {
 
     fun SubscribetoLiveData() {
         viewmodel.event.observe(this) {
-            Log.d("event", it.toString())
-            when(it) {
-                EventNavigate.NavigateToCam -> {
-                    openamactivity()
-                }
-                EventNavigate.NavigateToSearch -> {
-                    opensearch()
-                }
-                EventNavigate.NavigateToOrder -> {
-                    openorder()
-                }
-                EventNavigate.NavigateToExpiry -> {
-                    openexpiry()
-                }
-                else -> {}
+            when (it) {
+                EventNavigate.NavigateToCart -> opencart()
+                EventNavigate.NavigateToOrder -> openorder()
+                EventNavigate.NavigateToExpiry -> openexpiry()
             }
         }
     }
 
-    fun openamactivity() {
-        val intent = Intent(this, CamActivity::class.java)
-        startActivity(intent)
-    }
-
-    fun opensearch() {
-        val intent = Intent(this, SearchActivity::class.java)
-        startActivity(intent)
-    }
 
     fun openorder() {
         val intent = Intent(this, OrderActivity::class.java)
@@ -124,6 +89,10 @@ class MainActivity : AppCompatActivity() {
 
     fun openexpiry() {
         val intent = Intent(this, ExpiryActivity::class.java)
+        startActivity(intent)
+    }
+    fun opencart() {
+        val intent = Intent(this, CartActivity::class.java)
         startActivity(intent)
     }
 }

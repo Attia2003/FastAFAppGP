@@ -6,12 +6,8 @@ import androidx.lifecycle.ViewModel
 class MainViewModel: ViewModel() {
     val event = MutableLiveData<EventNavigate>()
 
-    fun OpenCamActivity(){
-        event.postValue(EventNavigate.NavigateToCam)
-    }
-
-    fun Opensearch(){
-        event.postValue(EventNavigate.NavigateToSearch)
+    fun OpnecartActivity(){
+        event.postValue(EventNavigate.NavigateToCart)
     }
 
     fun OpenOrder(){
