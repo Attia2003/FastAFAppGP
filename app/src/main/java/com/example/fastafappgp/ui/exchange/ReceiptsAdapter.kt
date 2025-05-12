@@ -20,7 +20,7 @@ class ReceiptsAdapter(
             binding.apply {
                 tvReceiptNumber.text = "Receipt #${item.id}"
                 tvEmployee.text = item.cashier?.username ?: "Unknown"
-                
+
                 val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.getDefault())
                 val outputFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 val date = try {

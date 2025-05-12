@@ -68,7 +68,7 @@ interface WebServices {
 //    @GET("api/vi/orders/all")
 //    suspend fun getallorders(@Query("pharmacy_id") pharmacyId: Int ,
 //                             @Query("page") page : Int,
-//                             @Query("size") size: Int) :
+//                             @Query("size") size: Int) : Response<>
 
 
     @GET("/api/v1/receipts/filter")
