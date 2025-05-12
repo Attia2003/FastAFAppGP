@@ -99,13 +99,13 @@ data class Shift(
 	val name: String? = null,
 
 	@field:SerializedName("startTime")
-	val startTime: StartTime? = null,
+	val startTime: String? = null,
 
 	@field:SerializedName("id")
 	val id: Int? = null,
 
 	@field:SerializedName("endTime")
-	val endTime: EndTime? = null
+	val endTime: String? = null
 ) : Parcelable
 
 @Parcelize

@@ -1,5 +1,6 @@
 package com.example.fastafappgp.ui.exchange
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,11 +9,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.fastafappgp.R
 import com.example.fastafappgp.databinding.ActivityExchangeBinding
+import com.example.fastafappgp.ui.exchange.details.ExchangeDetailsActivity
+import com.example.fastafappgp.util.Constant
 
 class ExchangeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExchangeBinding
     private val viewModel: ExchangeViewModel by viewModels()
-    private val adapter = ReceiptsAdapter()
+    private val adapter = ReceiptsAdapter { receiptId ->
+        val intent = Intent(this, ExchangeDetailsActivity::class.java).apply {
+            putExtra(Constant.receipt_id, receiptId)
+        }
+        startActivity(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

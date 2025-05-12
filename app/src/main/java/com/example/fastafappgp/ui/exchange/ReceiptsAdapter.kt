@@ -8,18 +8,19 @@ import com.example.fastafappgp.databinding.ItemExchangeBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ReceiptsAdapter : RecyclerView.Adapter<ReceiptsAdapter.ViewHolder>() {
-    private var items: List<ResponseExchange> = emptyList()
+class ReceiptsAdapter(
+    private var items: List<ResponseExchange> = emptyList(),
+    private val onItemClick: (Int) -> Unit
+) : RecyclerView.Adapter<ReceiptsAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: ItemExchangeBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ResponseExchange) {
+        fun bind(item: ResponseExchange, onItemClick: (Int) -> Unit) {
             Log.d("ReceiptsAdapter", "Binding receipt: id=${item.id}," +
                     " cashier=${item.cashier?.username}, total=${item.total}, items=${item.items?.size}")
             binding.apply {
                 tvReceiptNumber.text = "Receipt #${item.id}"
                 tvEmployee.text = item.cashier?.username ?: "Unknown"
                 
-
                 val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.getDefault())
                 val outputFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
                 val date = try {
@@ -31,7 +32,9 @@ class ReceiptsAdapter : RecyclerView.Adapter<ReceiptsAdapter.ViewHolder>() {
                 
                 tvTotal.text = "Total: ${item.total ?: 0.0}"
 
-
+                root.setOnClickListener {
+                    item.id?.let { id -> onItemClick(id) }
+                }
             }
         }
     }
@@ -42,7 +45,7 @@ class ReceiptsAdapter : RecyclerView.Adapter<ReceiptsAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], onItemClick)
     }
 
     override fun getItemCount(): Int = items.size

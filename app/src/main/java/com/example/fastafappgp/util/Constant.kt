@@ -10,5 +10,7 @@ object Constant {
 
     const val listidsreset = "selected_ids"
 
+    const val receipt_id = "receipt_id"
+
 
 }
