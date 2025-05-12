@@ -97,21 +97,7 @@ data class CreatedBy(
 	val accountNonLocked: Boolean? = null
 ) : Parcelable
 
-@Parcelize
-data class Shift(
 
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("startTime")
-	val startTime: StartTime? = null,
-
-	@field:SerializedName("id")
-	val id: Int? = null,
-
-	@field:SerializedName("endTime")
-	val endTime: EndTime? = null
-) : Parcelable
 
 @Parcelize
 data class Employee(

@@ -17,5 +17,9 @@ class MainViewModel: ViewModel() {
         event.postValue(EventNavigate.NavigateToExpiry)
 
     }
+    fun OpenExchange(){
+        event.postValue(EventNavigate.NavigateToExchange)
+    }
+
 
 }

@@ -1,150 +1,52 @@
 package com.example.fastafappgp.ui.exchange
 
-import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
+import com.example.fastafappgp.ui.details.Shift
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class PaginatedResponse(
+	val content: List<ResponseExchange>?,
+	val totalElements: Int?,
+	val totalPages: Int?,
+	val size: Int?,
+	val number: Int?
+) : Parcelable
 
 @Parcelize
 data class ResponseExchange(
-
-	@field:SerializedName("ResponseExchange")
-	val responseExchange: List<ResponseExchangeItem?>? = null
+	val id: Int,
+	val items: List<ReceiptItem>?,
+	val cashier: Cashier?,
+	val shift: Shift?,
+	val total: Double?,
+	val revenue: Double?,
+	val profit: Double?,
+	val status: String?,
+	val createdAt: String?,
+	val updatedAt: String?
 ) : Parcelable
 
 @Parcelize
-data class Shift(
-
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("startTime")
-	val startTime: StartTime? = null,
-
-	@field:SerializedName("id")
-	val id: Int? = null,
-
-	@field:SerializedName("endTime")
-	val endTime: EndTime? = null
-) : Parcelable
-
-@Parcelize
-data class StartTime(
-
-	@field:SerializedName("hour")
-	val hour: Int? = null,
-
-	@field:SerializedName("nano")
-	val nano: Int? = null,
-
-	@field:SerializedName("minute")
-	val minute: Int? = null,
-
-	@field:SerializedName("second")
-	val second: Int? = null
-) : Parcelable
-
-@Parcelize
-data class ItemsItem(
-
-	@field:SerializedName("amountDue")
-	val amountDue: Float? = null,
-
-	@field:SerializedName("drugName")
-	val drugName: String? = null,
-
-	@field:SerializedName("discount")
-	val discount: Float? = null,
-
-	@field:SerializedName("units")
-	val units: Int? = null,
-
-	@field:SerializedName("pack")
-	val pack: Int? = null,
-
-	@field:SerializedName("status")
-	val status: String? = null
+data class ReceiptItem(
+	val drugName: String?,
+	val units: Int?,
+	val pack: Int?,
+	val discount: Double?,
+	val amountDue: Double?,
+	val status: String?
 ) : Parcelable
 
 @Parcelize
 data class Cashier(
-
-	@field:SerializedName("createdAt")
-	val createdAt: String? = null,
-
-	@field:SerializedName("role")
-	val role: String? = null,
-
-	@field:SerializedName("phone")
-	val phone: String? = null,
-
-	@field:SerializedName("name")
-	val name: String? = null,
-
-	@field:SerializedName("managedUser")
-	val managedUser: Boolean? = null,
-
-	@field:SerializedName("id")
-	val id: Int? = null,
-
-	@field:SerializedName("fbUser")
-	val fbUser: Boolean? = null,
-
-	@field:SerializedName("email")
-	val email: String? = null,
-
-	@field:SerializedName("username")
-	val username: String? = null,
-
-	@field:SerializedName("updatedAt")
-	val updatedAt: String? = null
-) : Parcelable
-
-@Parcelize
-data class ResponseExchangeItem(
-
-	@field:SerializedName("createdAt")
-	val createdAt: String? = null,
-
-	@field:SerializedName("total")
-	val total: Float? = null,
-
-	@field:SerializedName("revenue")
-	val revenue: Float? = null,
-
-	@field:SerializedName("cashier")
-	val cashier: Cashier? = null,
-
-	@field:SerializedName("shift")
-	val shift: Shift? = null,
-
-	@field:SerializedName("id")
-	val id: Int? = null,
-
-	@field:SerializedName("items")
-	val items: List<ItemsItem?>? = null,
-
-	@field:SerializedName("profit")
-	val profit: Float? = null,
-
-	@field:SerializedName("status")
-	val status: String? = null,
-
-	@field:SerializedName("updatedAt")
-	val updatedAt: String? = null
-) : Parcelable
-
-@Parcelize
-data class EndTime(
-
-	@field:SerializedName("hour")
-	val hour: Int? = null,
-
-	@field:SerializedName("nano")
-	val nano: Int? = null,
-
-	@field:SerializedName("minute")
-	val minute: Int? = null,
-
-	@field:SerializedName("second")
-	val second: Int? = null
+	val id: Int?,
+	val name: String?,
+	val username: String?,
+	val email: String?,
+	val phone: String?,
+	val role: String?,
+	val fbUser: Boolean?,
+	val managedUser: Boolean?,
+	val createdAt: String?,
+	val updatedAt: String?
 ) : Parcelable

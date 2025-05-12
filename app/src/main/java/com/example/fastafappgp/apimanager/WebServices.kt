@@ -1,13 +1,14 @@
 package com.example.fastafappgp.apimanager
 
+import com.example.fastafappgp.ui.exchange.PaginatedResponse
+import com.example.fastafappgp.ui.exchange.ResponseExchange
 import ResponsePharmacyItem
 import com.example.fastafappgp.ui.cart.ReceiptItem
-
 import com.example.fastafappgp.ui.cart.ResponseDrugReceiopts
 import com.example.fastafappgp.ui.cart.search.Drug
 import com.example.fastafappgp.ui.cart.search.ResponseSearchItem
 import com.example.fastafappgp.ui.details.ResponseDetails
-import com.example.fastafappgp.ui.exchange.ResponseExchange
+import com.example.fastafappgp.ui.exchange.details.ResponseDetailsExchange
 import com.example.fastafappgp.ui.login.LoginRequest
 import com.example.fastafappgp.ui.login.LoginResponse
 import com.example.fastafappgp.ui.login.RefreshRequest
@@ -71,12 +72,15 @@ interface WebServices {
 
 
     @GET("/api/v1/receipts/filter")
-    suspend fun getreceipts(@Query("receipt_id") receiptId: Int,
-                             @Query("drug_id")drugId:Int,
-                             @Query("to_date")todate:String,
-                             @Query("from_date")fromdate:String,
-                             @Query("cashier_id")cashierId:Int,
-                            ): Response<List<ResponseExchange>>
+    suspend fun getreceipts(
+        @Query("receipt_id") receiptId: Int? = null,
+        @Query("drug_id") drugId: Int? = null,
+        @Query("to_date") todate: String? = null,
+        @Query("from_date") fromdate: String? = null,
+        @Query("cashier_id") cashierId: Int? = null,
+        @Query("page") page: Int = 0,
+        @Query("size") size: Int = 30
+    ): Response<List<ResponseExchange>>
 
 
     @POST("/api/v1/receipts")
@@ -84,8 +88,11 @@ interface WebServices {
         @Query("pharmacy_id") pharmacyId: Int,
         @Body receiptItems: List<ReceiptItem>
     ): Response<Unit>
+
+    @GET("api/v1/receipts/{receipt_id}")
+    suspend fun getReceiptDetails(@Path("receipt_id") receiptId: Int) : Response<ResponseDetailsExchange>
+
+
 }
-
-
 
 

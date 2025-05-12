@@ -2,5 +2,5 @@ package com.example.fastafappgp.ui.main
 
 enum class EventNavigate {
 
-    NavigateToCart,NavigateToOrder,NavigateToExpiry
+    NavigateToCart,NavigateToOrder,NavigateToExpiry,NavigateToExchange
 }

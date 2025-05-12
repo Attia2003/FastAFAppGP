@@ -8,8 +8,8 @@ import com.example.fastafappgp.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
-    val username = MutableLiveData<String>("mustafa_hany")
-    val password = MutableLiveData<String>("password")
+    val username = MutableLiveData<String>("Mahmoud Attia")
+    val password = MutableLiveData<String>("mahmoudattia@gmail.com")
 
     val loginResponse = MutableLiveData<LoginResponse>()
     val loginError = MutableLiveData<String>()

@@ -14,6 +14,7 @@ import com.example.fastafappgp.databinding.ActivityMainBinding
 import com.example.fastafappgp.ui.cam.CamActivity
 import com.example.fastafappgp.ui.cart.CartActivity
 import com.example.fastafappgp.ui.cart.search.SearchActivity
+import com.example.fastafappgp.ui.exchange.ExchangeActivity
 import com.example.fastafappgp.ui.expiry.ExpiryActivity
 import com.example.fastafappgp.ui.order.OrderActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -77,6 +78,8 @@ class MainActivity : AppCompatActivity() {
                 EventNavigate.NavigateToCart -> opencart()
                 EventNavigate.NavigateToOrder -> openorder()
                 EventNavigate.NavigateToExpiry -> openexpiry()
+                EventNavigate.NavigateToExchange -> openexchange()
+
             }
         }
     }
@@ -95,4 +98,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, CartActivity::class.java)
         startActivity(intent)
     }
+    fun openexchange() {
+        val intent = Intent(this, ExchangeActivity::class.java)
+        startActivity(intent)
+    }
+
 }
